@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+		"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+		
+<!-- xml implementation path -->
+<mapper namespace="com.kickstarter.dao.LoginDbDao">
+
+
+<!-- id property	 => 	int -->
+<!-- result property => 	string -->
+<!-- id 			 => 	id of resultMap tag -->
+<!-- type 			 => 	model path -->
+<resultMap id ="queryResult" type="com.kickstarter.model.LoginModel">
+		<result property="username" column="username"/>
+		<result property="password" column="password"/>
+</resultMap>
+
+<!-- id 		=> 	method name nung interface -->
+<!-- resultMap 	=> 	result of query, should match if of resultMap -->
+<select id="getCredentials" resultMap="queryResult">
+		
+		SELECT username, password
+		
+		FROM dbo.credentials
+		
+		WHERE
+		username = #{userValue} 
+		AND
+		password = #{passValue}
+	</select>
+</mapper>
