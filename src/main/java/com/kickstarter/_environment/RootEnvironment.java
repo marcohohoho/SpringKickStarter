@@ -44,7 +44,7 @@ public class RootEnvironment extends WebMvcConfigurerAdapter{
 	 * 		we can resolve views automatically to be redirected to default page
 	 * 		when a 404 exception occurs
 	 * 
-	 * 		-Randolf
+	 * 		-Randolf 
 	 * */
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry){
