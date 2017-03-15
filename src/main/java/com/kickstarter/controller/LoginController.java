@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.kickstarter.service.LoginService;
 
 @Controller
-@RequestMapping
+@RequestMapping("/")
 public class LoginController {
 	
 	@Autowired
@@ -23,19 +23,21 @@ public class LoginController {
 	}
 
 //modelmap "key from html", string param
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String handleCalc(@RequestParam String user, @RequestParam String pass, ModelMap modelMap){
-		modelMap.put("user", user);
-		modelMap.put("pass", pass);
-		boolean isValid=loginService.authenticate(user, pass);
+	@RequestMapping(value = "/login", method = 																																																																																																																														RequestMethod.POST)
+	public String handleCalc(@RequestParam String theusername, @RequestParam String thepassword, ModelMap modelMap){
+//		modelMap.put("user1", user);
+//		modelMap.put("pass1", pass);
+//		addAttribute() does null check
+		modelMap.addAttribute("user1", theusername);
+		modelMap.addAttribute("pass1", thepassword);
+		boolean isValid=loginService.authenticate(modelMap);
+		System.out.println(isValid);
+		
 		if(isValid){
-			System.out.println(true);
 			return "/dash";
 		}
 		else{
-			System.out.println(false);
-			return "/dash";
+			return "/login";
 		}
-			
 	}
 }
